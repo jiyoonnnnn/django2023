@@ -1,0 +1,84 @@
+{% load pybo_filter %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+</head>
+<body>
+
+
+<!-- 네비게이션바 -->
+<nav class="navbar navbar-expand-lg navbar-light bg-info border-bottom">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'pybo:index' %}">Guitar Love</a>
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    {% if user.is_authenticated %}
+                    <a class="nav-link" href="{% url 'common:logout' %}">{{ user.username }} (로그아웃)</a>
+                    {% else %}
+                    <a class="nav-link" href="{% url 'common:login' %}">로그인</a>
+                    {% endif %}
+                </li>
+                <li>
+                    {% if not user.is_authenticated %}
+                    <a class="nav-link" href="{% url 'common:signup' %}">회원가입</a>
+                    {% endif %}
+                </li>
+            </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-end">
+                <li>
+                    <a class="nav-link " href="{% url 'pybo:guicom' %}">커뮤니티</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="{% url 'pybo:salep' %}">기타판매</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="{% url 'pybo:findp' %}">구인구직</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<p>이곳은 기타를 사랑하는 사람들을 위한 기타 관련 홈페이지입니다.</p><br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+    커뮤니티&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    기타판매
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;구인구직</p><br>
+
+<div>
+    <ul>
+        <li>
+            <iframe src="{% url 'guicom'%}"
+                width=400px" height="500px" seamless scrolling="yes" frameborder=0 framespacing=0>
+            </iframe>
+            <iframe src="{% url 'salep'%}"
+                width=400px" height="500px" seamless scrolling="yes" frameborder=0 framespacing=0 >
+            </iframe>
+            <iframe src="{% url 'findp'%}"
+                width=400px" height="500px" seamless scrolling="yes" frameborder=0 framespacing=0 >
+            </iframe>
+        </li>
+
+    </ul>
+</div>
+
+
+
+</body>
+</html>
